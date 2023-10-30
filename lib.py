@@ -75,4 +75,4 @@ class RoadNetwork(object):
 
         print("shortest path => " + " -> ".join(shortest))
 
-        return {'path': shortest, 'weight': shortest_path[target_node]}
+        return {'path': shortest, 'path_cost': shortest_path[target_node]}
