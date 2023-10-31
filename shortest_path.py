@@ -1,24 +1,22 @@
 from lib import RoadNetwork
+from graph import Graph
 
-nodes = ["Mchinji", "Kasungu", "Lilongwe", "Ntchisi",
-         "Dowa", "Dedza", "Ntcheu", "Salima", "Nkhotakota"]
+graph = Graph()
 
-init_graph = {}
-for node in nodes:
-    init_graph[node] = {}
+graph.add_edge("Mchinji", "Kasungu", 141)
+graph.add_edge("Mchinji", "Lilongwe", 109)
+graph.add_edge("Lilongwe", "Dowa", 55)
+graph.add_edge("Lilongwe", "Dedza", 92)
+graph.add_edge("Dowa", "Kasungu", 117)
+graph.add_edge("Dowa", "Ntchisi", 38)
+graph.add_edge("Dowa", "Salima", 67)
+graph.add_edge("Kasungu", "Ntchisi", 66)
+graph.add_edge("Ntchisi", "Nkhotakota", 66)
+graph.add_edge("Nkhotakota", "Salima", 112)
+graph.add_edge("Salima", "Dedza", 96)
+graph.add_edge("Dedza", "Ntcheu", 74)
+graph.add_edge("Ntcheu", "Ntcheu", 0)
 
-init_graph["Mchinji"]["Kasungu"] = 141
-init_graph["Mchinji"]["Lilongwe"] = 109
-init_graph["Lilongwe"]["Dowa"] = 55
-init_graph["Lilongwe"]["Dedza"] = 92
-init_graph["Dowa"]["Kasungu"] = 117
-init_graph["Dowa"]["Ntchisi"] = 38
-init_graph["Dowa"]["Salima"] = 67
-init_graph["Kasungu"]["Ntchisi"] = 66
-init_graph["Ntchisi"]["Nkhotakota"] = 66
-init_graph["Nkhotakota"]["Salima"] = 112
-init_graph["Salima"]["Dedza"] = 96
-init_graph["Dedza"]["Ntcheu"] = 74
 
-graph = RoadNetwork(nodes, init_graph)
-print(graph.shortest_distance(start_node="Lilongwe", target_node="Nkhotakota"))
+road_network = RoadNetwork(graph.get_nodes(), graph.graph)
+print(road_network.shortest_distance(start_node="Mchinji", target_node="Ntcheu"))
